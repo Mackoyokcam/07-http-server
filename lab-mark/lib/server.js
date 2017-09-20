@@ -26,7 +26,9 @@ const app = http.createServer((req, res) => {
                </nav>
              <header>
              <main>
-               Cowsay Project, pew pew!
+              Click on the cowsay anchor tag to get the default cow and cow text.<br>
+              To change the text, add '?text=message to the end of the url.<br>
+              To change the cow, add &f=dragon after the message.'
              </main>
             </body>
           </html>
@@ -36,7 +38,7 @@ const app = http.createServer((req, res) => {
       }
 
       if(req.method === 'GET' && req.url.pathname === '/cowsay'){
-        let cowMessage = { text: 'I wanna say something!' };
+        let cowMessage = { text: 'I need something good to say!' };
         if (req.url.query.text)
           cowMessage = req.url.query;
 
@@ -49,14 +51,23 @@ const app = http.createServer((req, res) => {
             </head>
             <body>
               <h1> cowsay </h1>
-              <pre>
-                ${cowsay.say(cowMessage)}
-              </pre>
+              <pre>${cowsay.say(cowMessage)}</pre>
             </body>
           </html>
           `);
         res.end();
         return;  // break out of the (req, res) => {} callback
+      }
+
+      if (req.method === 'GET' && req.url.pathname === '/api/cowsay') {
+        let cowMessage = { text: 'I need something good to say!' };
+        if (req.url.query.text)
+          cowMessage = req.url.query;
+
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.write(JSON.stringify({content: cowsay.say(cowMessage)}));
+        res.end();
+        return;
       }
 
       if(req.method === 'POST' && req.url.pathname === '/api/cowsay'){

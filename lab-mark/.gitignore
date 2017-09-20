@@ -1,4 +1,6 @@
 # 401 JS
+package-lock.json
+../package-lock.json
 db
 .env
 temp
