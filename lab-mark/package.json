@@ -7,6 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
     "lint": "eslint .",
     "test": "jest --coverage -i",
     "test-watch": "jest --watch -i"
@@ -15,9 +17,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^21.1.0"
+    "dotenv": "^4.0.0",
+    "jest": "^21.1.0",
+    "nodemon": "^1.12.1"
   },
   "dependencies": {
-    "faker": "^4.1.0"
+    "cowsay": "^1.2.1",
+    "faker": "^4.1.0",
+    "superagent": "^3.6.0"
   }
 }
