@@ -51,9 +51,7 @@ const app = http.createServer((req, res) => {
             </head>
             <body>
               <h1> cowsay </h1>
-              <pre>
-                ${cowsay.say(cowMessage)}
-              </pre>
+              <pre>${cowsay.say(cowMessage)}</pre>
             </body>
           </html>
           `);
